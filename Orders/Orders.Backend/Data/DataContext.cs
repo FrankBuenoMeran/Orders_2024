@@ -7,8 +7,7 @@ namespace Orders.Backend.Data
     {
         //Para conectarnos a la base de datos creamos el constructor con la palabra ctor tab
         public DataContext(DbContextOptions<DataContext> options):base(options)
-        {
-            
+        {  
         }
         public DbSet<Country>Countries{get; set; }
 
