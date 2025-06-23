@@ -7,7 +7,6 @@ namespace Orders.Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]/")]
-    //[Route("api/[controller]/")]
     public class CountriesController : ControllerBase
     {
         private readonly DataContext _context;
@@ -25,7 +24,9 @@ namespace Orders.Backend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            return Ok(await _context.Countries.ToListAsync());
+            //Entity framework hace un trakin de todo lo que hace en la base de datos, graba muchos logs de todo lo que esta haciendo
+            //cuando son operaciones de lecturas, si queremos mejorar el performance de nuestra consultas podemos colocarles la siguente funcion:AsNoTracking 
+            return Ok(await _context.Countries.AsNoTracking().ToListAsync());
         }
 
         //creamos el metodo para obtener pais o Countries por ID con HttpGet 
